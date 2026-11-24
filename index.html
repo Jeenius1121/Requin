@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le requin corail</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Plongée éducative pour l'école primaire : découvre le requin corail, le chasseur de nuit des récifs, avec des jeux et des activités interactives.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Lexend:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#identite">Aller au contenu</a>
+
+<!-- ============ ORDINATEUR DE PLONGÉE (jauge de profondeur) ============ -->
+<aside class="gauge" aria-label="Profondeur et carnet de plongée">
+  <div class="gauge-read">
+    <span class="gauge-label">Profondeur</span>
+    <span class="gauge-depth"><span id="depth-value">0</span><small> m</small></span>
+  </div>
+  <nav class="gauge-track" aria-label="Paliers de la plongée">
+    <div class="gauge-fill" id="gauge-fill"></div>
+    <ol id="gauge-stops"></ol>
+  </nav>
+  <button class="carnet-btn" id="carnet-open" type="button" aria-haspopup="dialog">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3V4z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></svg>
+    <span>Carnet</span>
+    <b id="badge-count">0/10</b>
+  </button>
+</aside>
+
+<main id="plongee">
+
+<!-- ============ SURFACE ============ -->
+<header class="hero" id="surface" data-depth="0" data-name="Surface">
+  <div class="caustics" aria-hidden="true"></div>
+  <div class="rays" aria-hidden="true"></div>
+  <div class="hero-shark" id="hero-shark" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Plongée éducative · Récif corallien</p>
+    <h1>Le requin<br><span>corail</span></h1>
+    <p class="hero-lead">Le jour, il dort dans les grottes du récif. La nuit, il part en chasse. Enfile ton masque&#8239;: on plonge à sa rencontre, jusqu'à 40 mètres de profondeur.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#identite">Commencer la plongée
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M5 13l7 7 7-7"/></svg></a>
+      <span class="hero-hint">10 paliers · 6 jeux · 10 badges à gagner</span>
+    </div>
+    <dl class="hero-facts">
+      <div><dt>Longueur</dt><dd>1,60 m</dd></div>
+      <div><dt>Vie</dt><dd>25 ans</dd></div>
+      <div><dt>Chasse</dt><dd>la nuit</dd></div>
+      <div><dt>Statut</dt><dd>Vulnérable</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ============ PALIER 1 : QUI EST-IL ? ============ -->
+<section class="stop" id="identite" data-depth="5" data-name="Qui est-il ?">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−5 m</span> Palier 1 · Première rencontre</p>
+    <h2>Qui est le requin corail&#8239;?</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-identite">Le requin corail est un vrai requin, et un requin est un poisson. Il vit près des récifs de corail, dans les mers chaudes. On l'appelle aussi <strong>requin à pointes blanches de récif</strong>, à cause des taches blanches au bout de deux de ses nageoires.</p>
+      <button class="listen" type="button" data-lire="#txt-identite">Écouter</button>
+    </div>
+
+    <div class="id-grid">
+      <article class="id-card" aria-labelledby="fiche-title">
+        <header class="id-card-head">
+          <span class="mono">Fiche d'identité · n° 1837</span>
+          <h3 id="fiche-title">Requin corail</h3>
+          <p class="latin">Triaenodon obesus</p>
+        </header>
+        <div class="id-card-shark" id="id-shark"></div>
+        <dl class="id-list">
+          <div><dt>Autre nom</dt><dd>Requin à pointes blanches de récif</dd></div>
+          <div><dt>Famille</dt><dd>Les requins requiem (Carcharhinidés)</dd></div>
+          <div><dt>Taille</dt><dd>Environ 1,60 m pour un grand adulte</dd></div>
+          <div><dt>Poids</dt><dd>Jusqu'à 20 kg environ</dd></div>
+          <div><dt>Durée de vie</dt><dd>Jusqu'à 25 ans environ</dd></div>
+          <div><dt>Menu</dt><dd>Poissons, poulpes, crabes, langoustes</dd></div>
+          <div><dt>Maison</dt><dd>Récifs coralliens des océans Indien et Pacifique</dd></div>
+          <div><dt>Profondeur</dt><dd>Surtout entre 8 et 40 m</dd></div>
+          <div><dt>Activité</dt><dd>La nuit (il est nocturne)</dd></div>
+          <div><dt>Statut</dt><dd><span class="pill pill-vu">VU</span> Vulnérable</dd></div>
+        </dl>
+      </article>
+
+      <div class="id-side">
+        <button class="flip" id="flip-name" type="button" aria-pressed="false">
+          <span class="flip-inner">
+            <span class="flip-front">
+              <span class="mono">Le mystère du nom</span>
+              <span class="flip-title">Triaenodon obesus</span>
+              <span class="flip-q">Son nom scientifique cache deux indices. L'un d'eux est une drôle d'erreur. Retourne la carte pour le découvrir.</span>
+              <span class="flip-cta">Retourner la carte</span>
+            </span>
+            <span class="flip-back">
+              <span class="mono">Solution</span>
+              <span class="flip-row"><b>Triaenodon</b> vient du grec et veut dire «&#8239;dent à trois pointes&#8239;». Ses petites dents ont une grande pointe au milieu et deux minuscules sur les côtés, comme un trident.</span>
+              <span class="flip-row"><b>Obesus</b> veut dire «&#8239;gros&#8239;» en latin. Pourtant, c'est l'un des requins les plus minces du récif&#8239;! Le savant qui l'a décrit en 1837 avait peut-être observé un requin bien nourri.</span>
+              <span class="flip-cta">Retourner la carte</span>
+            </span>
+          </span>
+        </button>
+
+        <ul class="facts3">
+          <li><b>Un poisson sans os</b><span>Son squelette est fait de cartilage, la matière souple de ton nez et de tes oreilles.</span></li>
+          <li><b>Plus vieux que les dinosaures</b><span>Les requins nagent dans les océans depuis plus de 400 millions d'années.</span></li>
+          <li><b>Des dents de rechange</b><span>Quand une dent tombe, celle de derrière avance pour la remplacer. Toute sa vie&#8239;!</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALIER 2 : ANATOMIE ============ -->
+<section class="stop" id="anatomie" data-depth="10" data-name="Son corps">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−10 m</span> Palier 2 · Observation</p>
+    <h2>Explore son corps</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-anatomie">Touche les points lumineux sur le requin pour découvrir à quoi sert chaque partie de son corps. Il y a 10 secrets à trouver.</p>
+      <button class="listen" type="button" data-lire="#txt-anatomie">Écouter</button>
+    </div>
+
+    <div class="anatomy">
+      <div class="anatomy-scroll">
+        <div class="anatomy-figure" id="anatomy-figure">
+          <div class="anatomy-shark" id="anatomy-shark"></div>
+          <div class="hotspots" id="hotspots"></div>
+        </div>
+      </div>
+      <div class="anatomy-panel" aria-live="polite">
+        <div class="anatomy-progress">
+          <span class="mono">Secrets découverts</span>
+          <span class="mono"><b id="anatomy-count">1</b>/10</span>
+        </div>
+        <div class="bar"><i id="anatomy-bar"></i></div>
+        <h3 id="anatomy-title">La pointe blanche</h3>
+        <p id="anatomy-text" class="lire"></p>
+        <p class="didyou" id="anatomy-extra"></p>
+        <button class="listen" type="button" data-lire="#anatomy-title,#anatomy-text,#anatomy-extra">Écouter</button>
+      </div>
+    </div>
+    <div class="chips" id="anatomy-chips" aria-label="Liste des parties du corps"></div>
+  </div>
+</section>
+
+<!-- ============ PALIER 3 : TAILLE ============ -->
+<section class="stop" id="taille" data-depth="14" data-name="Sa taille">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−14 m</span> Palier 3 · Mesures</p>
+    <h2>Mesure-toi au requin</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-taille">Un grand requin corail mesure environ 1,60 mètre. Les plus grands dépassent à peine 2 mètres. Indique ta taille pour te comparer à lui.</p>
+      <button class="listen" type="button" data-lire="#txt-taille">Écouter</button>
+    </div>
+
+    <div class="measure">
+      <div class="measure-controls">
+        <label for="my-height" class="mono">Ta taille</label>
+        <output id="my-height-out" for="my-height">1,30 m</output>
+        <input type="range" id="my-height" min="90" max="180" step="1" value="130">
+        <div class="seg" role="group" aria-label="Choisir le requin à comparer">
+          <button type="button" class="seg-btn" data-len="55" aria-pressed="false">Bébé à la naissance</button>
+          <button type="button" class="seg-btn" data-len="160" aria-pressed="true">Grand adulte</button>
+        </div>
+        <p class="measure-result" id="measure-result" aria-live="polite"></p>
+        <p class="didyou">Un requin corail pèse au maximum 20 kg environ, à peu près le poids d'un enfant de 5 ou 6 ans. Il est long, mais très mince&#8239;!</p>
+      </div>
+      <div class="measure-figure">
+        <svg id="measure-svg" viewBox="0 0 720 440" role="img" aria-label="Comparaison de ta taille avec celle du requin corail"></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALIER 4 : HABITAT ============ -->
+<section class="stop" id="habitat" data-depth="18" data-name="Où vit-il ?">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−18 m</span> Palier 4 · Carte du monde</p>
+    <h2>Où vit-il&#8239;?</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-habitat">Le requin corail vit dans les eaux chaudes et claires de l'océan Indien et de l'océan Pacifique, partout où il y a des récifs de corail. La zone turquoise montre où on peut le rencontrer. Clique sur les points pour voyager.</p>
+      <button class="listen" type="button" data-lire="#txt-habitat">Écouter</button>
+    </div>
+
+    <div class="map-box">
+      <div class="map-scroll">
+        <svg id="world-map" class="world-map" role="group" aria-label="Carte du monde des lieux où vit le requin corail"></svg>
+      </div>
+      <div class="map-panel" aria-live="polite">
+        <div class="anatomy-progress">
+          <span class="mono">Lieux visités</span>
+          <span class="mono"><b id="map-count">0</b>/10</span>
+        </div>
+        <div class="bar"><i id="map-bar"></i></div>
+        <p class="mono map-coords" id="map-coords">Choisis un point sur la carte</p>
+        <h3 id="map-title">Bon voyage&#8239;!</h3>
+        <p id="map-text" class="lire">Commence par la France, puis pars vers les mers chaudes. Tu trouveras des requins corail jusque dans les territoires français d'outre-mer.</p>
+        <p class="map-shark" id="map-shark" hidden></p>
+      </div>
+    </div>
+    <ul class="map-legend">
+      <li><i class="lg-range"></i>Zone où vit le requin corail</li>
+      <li><i class="lg-dot"></i>Lieu à visiter</li>
+      <li><i class="lg-dot lg-dot-no"></i>Pas de requin corail ici</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PALIER 5 : JOUR / NUIT ============ -->
+<section class="stop" id="jour-nuit" data-depth="22" data-name="Jour et nuit">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−22 m</span> Palier 5 · Une journée sur le récif</p>
+    <h2>Dormeur le jour, chasseur la nuit</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-jn">Change l'heure sur le récif et observe ce que font les requins corail.</p>
+      <button class="listen" type="button" data-lire="#txt-jn,#dn-text">Écouter</button>
+    </div>
+
+    <div class="daynight" id="daynight">
+      <div class="dn-toolbar">
+        <div class="seg seg-dn" role="group" aria-label="Moment de la journée">
+          <button type="button" class="seg-btn" data-time="day" aria-pressed="true">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+            Jour</button>
+          <button type="button" class="seg-btn" data-time="night" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+            Nuit</button>
+        </div>
+        <span class="mono dn-clock" id="dn-clock">13 h 00</span>
+      </div>
+      <div class="dn-scene" id="dn-scene">
+        <svg class="dn-bg" viewBox="0 0 1000 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <defs>
+            <linearGradient id="dnDay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f8fb4"/><stop offset="1" stop-color="#0b4d6c"/></linearGradient>
+            <linearGradient id="dnNight" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#06213a"/><stop offset="1" stop-color="#020a14"/></linearGradient>
+            <radialGradient id="dnCave" cx=".5" cy=".55" r=".6"><stop offset="0" stop-color="#03111b"/><stop offset=".75" stop-color="#062233"/><stop offset="1" stop-color="#0b3346"/></radialGradient>
+          </defs>
+          <rect class="dn-water-day" width="1000" height="440" fill="url(#dnDay)"/>
+          <rect class="dn-water-night" width="1000" height="440" fill="url(#dnNight)"/>
+          <g class="dn-rays" fill="#ffffff">
+            <path d="M180 0h70L120 440H40z" opacity=".07"/><path d="M420 0h50L380 440h-90z" opacity=".06"/><path d="M700 0h60L700 440h-80z" opacity=".07"/>
+          </g>
+          <g class="dn-moon" fill="#cfe6ff">
+            <ellipse cx="760" cy="10" rx="90" ry="14" opacity=".18"/><ellipse cx="760" cy="10" rx="40" ry="6" opacity=".25"/>
+          </g>
+          <!-- Récif -->
+          <path class="dn-rock" d="M0 300 C60 250 120 240 170 262 C210 220 280 200 330 228 C360 180 460 160 520 190 C580 150 690 160 740 214 C800 190 880 200 930 240 C960 230 990 236 1000 244 V440 H0z" fill="#2d4a55"/>
+          <path class="dn-rock2" d="M0 340 C80 320 140 330 200 344 C260 320 330 316 380 340 L620 344 C690 318 760 320 820 338 C880 322 950 326 1000 336 V440 H0z" fill="#3a5a62"/>
+          <path d="M360 330 C370 270 420 236 500 236 C580 236 632 272 640 330 C600 344 400 344 360 330z" fill="url(#dnCave)"/>
+          <path d="M0 400 C200 384 400 392 520 388 C700 382 860 392 1000 386 V440 H0z" fill="#c9b98f" opacity=".55"/>
+          <!-- Coraux -->
+          <g class="dn-coral" fill="none" stroke-linecap="round">
+            <path d="M120 262 v-40 m0 18 l-18-22 m18 10 l16-26 m-16 40 l26-14" stroke="#e57f6a" stroke-width="7"/>
+            <path d="M860 232 v-44 m0 16 l-20-24 m20 12 l18-30 m-18 46 l28-12" stroke="#d8a24a" stroke-width="7"/>
+            <path d="M700 214 c-10-30 -4-60 10-80 m-10 80 c10-26 24-44 40-52 m-50 52 c-20-20 -40-30 -60-30" stroke="#b66fb0" stroke-width="5"/>
+            <path d="M250 214 c0-30 10-50 24-60 m-24 60 c-6-24 -20-40 -34-46" stroke="#5fb3a1" stroke-width="6"/>
+          </g>
+          <!-- Trous du récif où dorment les poissons la nuit -->
+          <g class="dn-holes" fill="#081a24">
+            <ellipse cx="150" cy="300" rx="22" ry="12"/><ellipse cx="300" cy="262" rx="18" ry="10"/><ellipse cx="790" cy="262" rx="20" ry="11"/><ellipse cx="900" cy="290" rx="18" ry="10"/><ellipse cx="560" cy="210" rx="16" ry="9"/>
+          </g>
+          <rect class="dn-dim" width="1000" height="440" fill="#020b16"/>
+        </svg>
+        <div class="dn-actors" id="dn-actors" aria-hidden="true"></div>
+      </div>
+      <div class="dn-info" aria-live="polite">
+        <h3 id="dn-title">13 h 00 · Sieste dans la grotte</h3>
+        <p id="dn-text" class="lire"></p>
+      </div>
+    </div>
+
+    <div class="cards3">
+      <article class="info-card">
+        <span class="mono">Le savais-tu&#8239;?</span>
+        <h3>Il respire sans nager</h3>
+        <p>Beaucoup de requins doivent nager sans arrêt pour que l'eau passe dans leurs branchies. Le requin corail, lui, peut rester posé au fond&#8239;: il pompe l'eau avec sa bouche.</p>
+      </article>
+      <article class="info-card">
+        <span class="mono">Le savais-tu&#8239;?</span>
+        <h3>Fidèle à sa grotte</h3>
+        <p>Il peut revenir dormir dans la même grotte pendant des mois, et même des années. Le jour, il reste dans un tout petit coin du récif, la taille de 7 terrains de foot.</p>
+      </article>
+      <article class="info-card">
+        <span class="mono">Le savais-tu&#8239;?</span>
+        <h3>Chacun pour soi</h3>
+        <p>La nuit, les requins corail chassent souvent en groupe. Mais ils ne partagent pas&#8239;: chacun essaie d'attraper la proie avant les autres.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALIER 6 : SENS + JEU DE CHASSE ============ -->
+<section class="stop" id="sens" data-depth="26" data-name="Ses super-sens">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−26 m</span> Palier 6 · Les super-sens</p>
+    <h2>Un détecteur vivant</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-sens">Dans le noir, impossible de voir les animaux cachés au fond des trous du récif. Pour les trouver, le requin corail utilise des sens que nous n'avons pas.</p>
+      <button class="listen" type="button" data-lire="#txt-sens">Écouter</button>
+    </div>
+
+    <div class="senses">
+      <article class="sense">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M10 30c6-10 22-10 28 0"/><path d="M16 22c4-5 12-5 16 0"/><circle cx="24" cy="34" r="3"/></svg>
+        <h3>L'odorat</h3>
+        <p>Ses narines servent seulement à sentir, pas à respirer. Il repère l'odeur d'une proie de très loin.</p>
+      </article>
+      <article class="sense">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 24h6l4-10 6 20 5-14 3 4h8"/></svg>
+        <h3>Le sens électrique</h3>
+        <p>Tout animal qui bouge produit un tout petit courant électrique. Les pores de son museau, les <b>ampoules de Lorenzini</b>, le captent.</p>
+      </article>
+      <article class="sense">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 24c4-6 8-6 12 0s8 6 12 0 8-6 12 0"/><path d="M6 32c4-6 8-6 12 0s8 6 12 0 8-6 12 0" opacity=".5"/></svg>
+        <h3>La ligne latérale</h3>
+        <p>Une ligne de capteurs le long de son corps sent les vibrations de l'eau, comme quand un poisson donne un coup de queue.</p>
+      </article>
+      <article class="sense">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 24s8-12 20-12 20 12 20 12-8 12-20 12S4 24 4 24z"/><circle cx="24" cy="24" r="5"/></svg>
+        <h3>La vision de nuit</h3>
+        <p>Au fond de ses yeux, un miroir renvoie la lumière, comme chez le chat. Il voit bien quand il fait sombre.</p>
+      </article>
+    </div>
+
+    <div class="game" id="hunt">
+      <div class="game-head">
+        <div>
+          <span class="mono">Jeu · Chasse de nuit</span>
+          <h3>Trouve les proies cachées</h3>
+        </div>
+        <div class="game-stats">
+          <span class="stat"><span class="mono">Proies</span><b id="hunt-score">0</b></span>
+          <span class="stat"><span class="mono">Temps</span><b id="hunt-time">45</b></span>
+        </div>
+      </div>
+      <div class="hunt-stage" id="hunt-stage">
+        <canvas id="hunt-canvas" aria-label="Jeu de chasse : récif dans la nuit"></canvas>
+        <div class="hunt-overlay" id="hunt-overlay">
+          <div class="hunt-card">
+            <span class="mono">Mission</span>
+            <h4 id="hunt-o-title">Tu es un requin corail</h4>
+            <p id="hunt-o-text">Il fait nuit. Promène ton détecteur (la souris ou ton doigt) sur le récif. Quand un animal caché s'allume, clique dessus pour l'attraper. Tu as 45 secondes.</p>
+            <button class="btn btn-primary" id="hunt-start" type="button">Commencer la chasse</button>
+          </div>
+        </div>
+        <p class="hunt-toast" id="hunt-toast" aria-live="polite"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALIER 7 : BÉBÉS ============ -->
+<section class="stop" id="bebes" data-depth="30" data-name="Les bébés">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−30 m</span> Palier 7 · Une vie de requin</p>
+    <h2>De bébé à grand requin</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-bebes">Le requin corail ne pond pas d'œufs. Les bébés grandissent dans le ventre de leur maman, reliés à elle par un placenta, comme les bébés humains&#8239;!</p>
+      <button class="listen" type="button" data-lire="#txt-bebes">Écouter</button>
+    </div>
+
+    <ol class="life-steps">
+      <li><span class="mono">Étape 1</span><b>Environ 1 an dans le ventre</b><span>La maman porte ses bébés pendant 10 à 13 mois. C'est plus long que pour un bébé humain (9 mois).</span></li>
+      <li><span class="mono">Étape 2</span><b>1 à 5 bébés</b><span>Le plus souvent 2 ou 3. Une maman a des petits à peu près tous les deux ans.</span></li>
+      <li><span class="mono">Étape 3</span><b>Seul dès la naissance</b><span>Le bébé mesure environ 55 cm, presque comme un bébé humain. Il sait déjà nager et chasser. Personne ne s'occupe de lui.</span></li>
+      <li><span class="mono">Étape 4</span><b>Adulte vers 8 ans</b><span>Il grandit lentement, de quelques centimètres par an. Il devient adulte quand il mesure environ 1 mètre.</span></li>
+    </ol>
+
+    <div class="growth">
+      <div class="growth-controls">
+        <label for="age" class="mono">Âge du requin</label>
+        <output id="age-out" for="age">0 an</output>
+        <input type="range" id="age" min="0" max="25" step="1" value="0">
+        <h3 id="growth-title">Nouveau-né</h3>
+        <p id="growth-text" class="lire"></p>
+      </div>
+      <div class="growth-figure">
+        <svg id="growth-svg" viewBox="0 0 720 240" role="img" aria-label="Taille du requin selon son âge"></svg>
+        <p class="note">Tailles approximatives : chaque requin grandit à son rythme.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALIER 8 : DÉTECTIVE ============ -->
+<section class="stop" id="detective" data-depth="33" data-name="Détective">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−33 m</span> Palier 8 · Jeu du détective</p>
+    <h2>Reconnais-le parmi les autres</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-detective">D'autres requins vivent sur les récifs. Un plongeur a pris des photos. Observe bien le bout des nageoires et retrouve le requin corail.</p>
+      <button class="listen" type="button" data-lire="#txt-detective,#detect-question">Écouter</button>
+    </div>
+    <div class="detect">
+      <div class="detect-head">
+        <span class="mono" id="detect-round">Photo 1 sur 2</span>
+        <h3 id="detect-question">Lequel de ces requins est un requin corail&#8239;?</h3>
+      </div>
+      <div class="detect-grid" id="detect-grid"></div>
+      <div class="detect-feedback" id="detect-feedback" aria-live="polite"></div>
+      <button class="btn btn-ghost" id="detect-next" type="button" hidden>Photo suivante</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALIER 9 : DANGER ============ -->
+<section class="stop" id="danger" data-depth="36" data-name="Dangereux ?">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−36 m</span> Palier 9 · Vrai ou faux</p>
+    <h2>Est-il dangereux&#8239;?</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-danger">On raconte beaucoup de choses sur les requins. Touche chaque phrase pour savoir si c'est un mythe (une fausse idée) ou la réalité.</p>
+      <button class="listen" type="button" data-lire="#txt-danger">Écouter</button>
+    </div>
+    <div class="myths" id="myths"></div>
+
+    <div class="numbers">
+      <div class="number">
+        <span class="mono">Chaque année dans le monde</span>
+        <b>5 à 10</b>
+        <span>personnes tuées par des requins, toutes espèces réunies.</span>
+      </div>
+      <div class="number number-big">
+        <span class="mono">Chaque année dans le monde</span>
+        <b>≈ 100 000 000</b>
+        <span>requins tués par les humains, selon les scientifiques.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALIER 10 : PROTÉGER ============ -->
+<section class="stop" id="proteger" data-depth="38" data-name="Le protéger">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−38 m</span> Palier 10 · En danger</p>
+    <h2>C'est lui qui a besoin d'aide</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-proteger">Les scientifiques classent les animaux selon le danger qu'ils courent de disparaître. C'est la Liste rouge de l'UICN. Depuis 2020, le requin corail est classé «&#8239;Vulnérable&#8239;». Touche les cases pour comprendre l'échelle.</p>
+      <button class="listen" type="button" data-lire="#txt-proteger">Écouter</button>
+    </div>
+
+    <div class="iucn">
+      <div class="iucn-scale" id="iucn-scale" role="group" aria-label="Catégories de la Liste rouge"></div>
+      <div class="iucn-info" aria-live="polite">
+        <h3 id="iucn-title"></h3>
+        <p id="iucn-text"></p>
+      </div>
+    </div>
+
+    <div class="cards3">
+      <article class="info-card">
+        <span class="mono">Menace 1</span>
+        <h3>La pêche</h3>
+        <p>Il est pris dans les filets ou pêché pour sa viande et ses ailerons. Comme il reste toujours au même endroit, un récif peut vite perdre tous ses requins.</p>
+      </article>
+      <article class="info-card">
+        <span class="mono">Menace 2</span>
+        <h3>Les récifs abîmés</h3>
+        <p>Quand la mer devient trop chaude, les coraux blanchissent et peuvent mourir. Sans récif, plus de grottes pour dormir ni de poissons à chasser.</p>
+      </article>
+      <article class="info-card">
+        <span class="mono">Menace 3</span>
+        <h3>Peu de bébés</h3>
+        <p>Adulte vers 8 ans, 2 ou 3 petits tous les deux ans&#8239;: quand il en disparaît beaucoup, il faut très longtemps pour qu'ils redeviennent nombreux.</p>
+      </article>
+    </div>
+
+    <div class="pledge">
+      <div>
+        <span class="mono">Moi aussi, j'agis</span>
+        <h3>Coche ce que tu t'engages à faire</h3>
+      </div>
+      <ul id="pledge-list">
+        <li><label><input type="checkbox" id="pledge-1" value="1"><span>Quand je nage avec un masque, je ne touche jamais les coraux&#8239;: ce sont des animaux fragiles.</span></label></li>
+        <li><label><input type="checkbox" id="pledge-2" value="2"><span>Je ramasse mes déchets à la plage pour qu'ils ne finissent pas dans la mer.</span></label></li>
+        <li><label><input type="checkbox" id="pledge-3" value="3"><span>Au soleil, je mets un t-shirt anti-UV ou une crème qui respecte les coraux.</span></label></li>
+        <li><label><input type="checkbox" id="pledge-4" value="4"><span>J'explique à ma famille que les requins sont utiles et qu'il faut les protéger.</span></label></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GRAND QUIZ ============ -->
+<section class="stop stop-last" id="quiz" data-depth="40" data-name="Grand quiz">
+  <div class="wrap">
+    <p class="eyebrow"><span class="depth-tag">−40 m</span> Fond du récif · Épreuve finale</p>
+    <h2>Le grand quiz de l'explorateur</h2>
+    <div class="lead-row">
+      <p class="lead lire" id="txt-quiz">Dix questions pour prouver que tu connais le requin corail. Avec 8 bonnes réponses ou plus, tu gagnes ton brevet d'explorateur des récifs.</p>
+      <button class="listen" type="button" data-lire="#txt-quiz,#quiz-q">Écouter</button>
+    </div>
+
+    <div class="quiz" id="quiz-box">
+      <div class="quiz-dots" id="quiz-dots" aria-hidden="true"></div>
+      <div class="quiz-body" id="quiz-body">
+        <span class="mono" id="quiz-num">Question 1 sur 10</span>
+        <h3 id="quiz-q"></h3>
+        <div class="quiz-answers" id="quiz-answers"></div>
+        <p class="quiz-explain" id="quiz-explain" aria-live="polite"></p>
+        <button class="btn btn-primary" id="quiz-next" type="button" hidden>Question suivante</button>
+      </div>
+      <div class="quiz-end" id="quiz-end" hidden>
+        <span class="mono">Résultat</span>
+        <p class="quiz-score"><b id="quiz-score">0</b>/10</p>
+        <p id="quiz-msg"></p>
+        <form class="cert-form" id="cert-form" hidden>
+          <label for="cert-name">Ton prénom pour le brevet</label>
+          <div class="cert-row">
+            <input type="text" id="cert-name" maxlength="24" autocomplete="given-name" placeholder="Ex. : Léa">
+            <button class="btn btn-primary" type="submit">Créer mon brevet</button>
+          </div>
+        </form>
+        <button class="btn btn-ghost" id="quiz-restart" type="button">Recommencer le quiz</button>
+      </div>
+    </div>
+
+    <div class="cert" id="cert" hidden>
+      <div class="cert-inner">
+        <span class="mono">Brevet officiel du récif · Triaenodon obesus</span>
+        <p class="cert-kicker">Ce brevet est décerné à</p>
+        <p class="cert-name" id="cert-out-name">Explorateur</p>
+        <p class="cert-body">pour avoir plongé jusqu'à 40 mètres et percé les secrets du <b>requin corail</b>, le chasseur de nuit des récifs.</p>
+        <div class="cert-meta">
+          <span><span class="mono">Score</span><b id="cert-score">0/10</b></span>
+          <span><span class="mono">Badges</span><b id="cert-badges">0/10</b></span>
+          <span><span class="mono">Date</span><b id="cert-date"></b></span>
+        </div>
+        <div class="cert-shark" id="cert-shark"></div>
+      </div>
+      <button class="btn btn-ghost" id="cert-print" type="button" hidden>Imprimer mon brevet</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <p class="foot-title">Le requin corail</p>
+      <p>Site éducatif pour l'école primaire (du CP au CM2). Les chiffres viennent des travaux des scientifiques et peuvent varier d'un requin à l'autre.</p>
+      <p>Sources : FishBase (fiche <i>Triaenodon obesus</i>), Liste rouge de l'UICN (évaluation 2020), Florida Museum of Natural History, Aquarium of the Pacific. Carte : Natural Earth.</p>
+    </div>
+    <a class="btn btn-ghost" href="#surface">Remonter à la surface
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4M5 11l7-7 7 7"/></svg></a>
+  </div>
+</footer>
+
+<!-- ============ CARNET DE PLONGÉE ============ -->
+<div class="drawer" id="carnet" role="dialog" aria-modal="true" aria-labelledby="carnet-title" hidden>
+  <div class="drawer-backdrop" data-close></div>
+  <div class="drawer-panel">
+    <div class="drawer-head">
+      <div>
+        <span class="mono">Carnet de plongée</span>
+        <h2 id="carnet-title">Tes badges</h2>
+      </div>
+      <button class="icon-btn" type="button" data-close aria-label="Fermer le carnet">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <p class="drawer-sub">Chaque activité réussie te rapporte un badge. Combien en trouveras-tu&#8239;?</p>
+    <ul class="badges" id="badges"></ul>
+    <button class="btn btn-ghost btn-small" id="reset-progress" type="button">Effacer ma progression</button>
+    <p class="reset-confirm" id="reset-confirm" hidden>Tout effacer&#8239;? <button type="button" class="link-btn" id="reset-yes">Oui, effacer</button> <button type="button" class="link-btn" id="reset-no">Non</button></p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/shark.js"></script>
+<script src="js/map-data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/hunt.js"></script>
+</body>
+</html>
